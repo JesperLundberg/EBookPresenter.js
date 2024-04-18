@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import fileSystem from "../services/filesystem.js";
+
 const routes = express.Router();
-const fileSystem = require("../services/filesystem");
 
 // *httpget* Get all ebooks
 routes.get("/ebooks", async (_, res, next) => {
@@ -15,4 +16,5 @@ routes.get("/ebooks", async (_, res, next) => {
   }
 });
 
-module.exports = routes;
+// module.exports = routes;
+export default routes;

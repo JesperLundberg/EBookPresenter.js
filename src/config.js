@@ -1,5 +1,5 @@
-config = {
+const config = {
   folderToRead: "/tmp",
 };
 
-module.exports = config;
+export default config;

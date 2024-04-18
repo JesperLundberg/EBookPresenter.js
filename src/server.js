@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import eBookRouter from "./routes/getAllEBooks.js";
+
 const app = express();
-const eBookRouter = require("./routes/getAllEBooks");
 const port = 3000;
 
 app.use(express.json());

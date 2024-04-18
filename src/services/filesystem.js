@@ -1,6 +1,10 @@
-const config = require("../config");
-const filesystem = require("fs");
-const path = require("path");
+import * as filesystem from "fs";
+import path from "path";
+import config from "../config.js";
+
+// const config = require("../config");
+// const filesystem = require("fs");
+// const path = require("path");
 
 async function getAllEBooks() {
   return getAllFiles(config.folderToRead);
@@ -8,7 +12,7 @@ async function getAllEBooks() {
 
 const getAllFiles = function (dirPath, arrayOfFiles) {
   // Get all elements in the directory
-  files = filesystem.readdirSync(dirPath);
+  const files = filesystem.readdirSync(dirPath);
 
   // Initialize array of files, if it is nil then initialize it as an empty array
   arrayOfFiles = arrayOfFiles || [];
@@ -28,6 +32,6 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
   return arrayOfFiles;
 };
 
-module.exports = {
+export default {
   getAllEBooks: getAllEBooks,
 };
