@@ -24,14 +24,16 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
       arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
     }
 
-    // This is a file with the .epub extension so add it to the array
-    if (path.extname(file) === ".epub")
+    if (path.extname(file) === ".epub") {
+      // This is a file with the .epub extension so add it to the array
       arrayOfFiles.push(path.join(dirPath, "/", file));
+    }
   });
 
   return arrayOfFiles;
 };
 
+// Export the public functions
 export default {
   getAllEBooks: getAllEBooks,
 };
