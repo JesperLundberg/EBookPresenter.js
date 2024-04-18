@@ -3,7 +3,11 @@ import fileSystem from "../services/filesystem.js";
 
 const routes = express.Router();
 
-// *httpget* Get all ebooks
+/** HTTPGET Get all ebooks
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next function
+ */
 routes.get("/ebooks", async (_, res, next) => {
   try {
     res.json(await fileSystem.getAllEBooks());
@@ -16,5 +20,5 @@ routes.get("/ebooks", async (_, res, next) => {
   }
 });
 
-// module.exports = routes;
+// Export the routes
 export default routes;

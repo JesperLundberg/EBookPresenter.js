@@ -2,14 +2,21 @@ import * as filesystem from "fs";
 import path from "path";
 import config from "../config.js";
 
-// const config = require("../config");
-// const filesystem = require("fs");
-// const path = require("path");
-
+/**
+ * @function getAllEBooks
+ * Gets all ebooks (including subfolders) from the path set in config.folderToRead
+ */
 async function getAllEBooks() {
   return getAllFiles(config.folderToRead);
 }
 
+/**
+ * @function getAllFiles
+ * This method gets all files with extension .epub recursively from @oaram {string} dirPath
+ * @param {string} dirPath
+ * @param {Array} arrayOfFiles
+ * @returns {Array}
+ */
 const getAllFiles = function (dirPath, arrayOfFiles) {
   // Get all elements in the directory
   const files = filesystem.readdirSync(dirPath);
