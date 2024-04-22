@@ -5,6 +5,7 @@ import path from "path";
  * @function getAllEBooks
  * Gets all ebooks (including subfolders) from the path set in config.folderToRead
  */
+// TODO: Extend to take which extension to look for
 async function getAllEBooks(path) {
   return getAllFiles(path);
 }
@@ -16,6 +17,7 @@ async function getAllEBooks(path) {
  * @param {Array} arrayOfFiles
  * @returns {Array}
  */
+// TODO: Extend to take which extension to look for
 function getAllFiles(dirPath, arrayOfFiles) {
   // Get all elements in the directory
   const files = readdirSync(dirPath);
@@ -30,6 +32,7 @@ function getAllFiles(dirPath, arrayOfFiles) {
       arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
     }
 
+    // TODO: Loop over the array of extensions to and add the file to the array if it matches
     if (path.extname(file) === ".epub") {
       // This is a file with the .epub extension so add it to the array
       arrayOfFiles.push(path.join(dirPath, "/", file));
