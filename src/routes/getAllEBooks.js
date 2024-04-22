@@ -1,5 +1,6 @@
 import express from "express";
 import fileSystem from "../services/filesystem.js";
+import config from "../config.js";
 
 const routes = express.Router();
 
@@ -10,7 +11,7 @@ const routes = express.Router();
  */
 routes.get("/ebooks", async (_, res, next) => {
   try {
-    res.json(await fileSystem.getAllEBooks());
+    res.json(await fileSystem.getAllEBooks(config.folderToRead));
   } catch (error) {
     console.error(
       "An error occurred when trying to get all ebooks",

@@ -1,13 +1,12 @@
-import * as filesystem from "fs";
+import { readdirSync, statSync } from "fs";
 import path from "path";
-import config from "../config.js";
 
 /**
  * @function getAllEBooks
  * Gets all ebooks (including subfolders) from the path set in config.folderToRead
  */
-async function getAllEBooks() {
-  return getAllFiles(config.folderToRead);
+async function getAllEBooks(path) {
+  return getAllFiles(path);
 }
 
 /**
@@ -17,16 +16,16 @@ async function getAllEBooks() {
  * @param {Array} arrayOfFiles
  * @returns {Array}
  */
-const getAllFiles = function (dirPath, arrayOfFiles) {
+function getAllFiles(dirPath, arrayOfFiles) {
   // Get all elements in the directory
-  const files = filesystem.readdirSync(dirPath);
+  const files = readdirSync(dirPath);
 
   // Initialize array of files, if it is nil then initialize it as an empty array
   arrayOfFiles = arrayOfFiles || [];
 
   // Iterate through all the files in the directory and follow into subdirectories by recursion
   files.forEach(function (file) {
-    if (filesystem.statSync(dirPath + "/" + file).isDirectory()) {
+    if (statSync(dirPath + "/" + file).isDirectory()) {
       // This is a directory so recurse into it
       arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
     }
@@ -38,7 +37,7 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
   });
 
   return arrayOfFiles;
-};
+}
 
 // Export the public functions
 export default {
