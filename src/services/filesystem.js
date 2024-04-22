@@ -1,4 +1,4 @@
-import * as filesystem from "fs";
+import filesystem from "fs";
 import path from "path";
 import config from "../config.js";
 
@@ -17,7 +17,7 @@ async function getAllEBooks() {
  * @param {Array} arrayOfFiles
  * @returns {Array}
  */
-const getAllFiles = function (dirPath, arrayOfFiles) {
+function getAllFiles(dirPath, arrayOfFiles) {
   // Get all elements in the directory
   const files = filesystem.readdirSync(dirPath);
 
@@ -38,7 +38,7 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
   });
 
   return arrayOfFiles;
-};
+}
 
 // Export the public functions
 export default {
