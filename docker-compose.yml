@@ -1,0 +1,21 @@
+services:
+    frontend:
+      container_name: "ebookpresenter-js.frontend"
+      image: "ebookpresenter-js.frontend"
+      ports:
+          - 3001:4321
+      build:
+          dockerfile: frontend.dockerfile
+      # environment:
+      #     - API_BASE_PATH=http://localhost:3000/
+    api:
+        container_name: "ebookpresenter-js.api"
+        image: "ebookpresenter-js.api"
+        ports:
+            - 3000:3000
+        build: 
+            dockerfile: backend.dockerfile
+        # environment:
+        #     - ASPNETCORE_ENVIRONMENT=Development
+        volumes:
+          - /tmp/books/:/books/
