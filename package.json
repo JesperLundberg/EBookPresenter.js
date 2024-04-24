@@ -2,9 +2,11 @@
   "name": "ebookpresenter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/backend/server.js",
   "type": "module",
   "scripts": {
+    "start": "node ./src/backend/server.js",
+    "start:fe": "cd src/frontend && npm start",
     "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest"
   },
   "keywords": [],
