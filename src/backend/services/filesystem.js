@@ -1,13 +1,45 @@
-import { readdirSync, statSync } from "fs";
+import { readdirSync, statSync, existsSync } from "fs";
 import path from "path";
 
 /**
  * @function getAllEBooks
  * Gets all ebooks (including subfolders) from the path set in config.folderToRead
+ * @param {string} path
+ * @exception {Error} Path is required
+ * @returns {Array}
  */
 // TODO: Extend to take which extension to look for
 async function getAllEBooks(path) {
-  return getAllFiles(path);
+  if (!path || typeof path != "string" || path === "") {
+    throw new Error("Path is required");
+  }
+
+  if (existsSync(path)) {
+    // Files exists so return file info
+    return getAllFiles(path);
+  } else {
+    throw new Error("Path does not exist");
+  }
+}
+
+/**
+ * @function getSpecificEBook
+ * Gets the specific ebook from the Path
+ * @param {string} Path
+ * @exception {Error} Path is required
+ * @returns {Object}
+ */
+async function getSpecificEBook(path) {
+  if (!path || typeof path != "string" || path === "") {
+    throw new Error("Path is required");
+  }
+
+  if (existsSync(path)) {
+    // Files exists so return file info
+    return await getSpecificFileWithInfo(path);
+  } else {
+    throw new Error("File does not exist");
+  }
 }
 
 /**
@@ -42,7 +74,28 @@ function getAllFiles(dirPath, arrayOfFiles) {
   return arrayOfFiles;
 }
 
+/**
+ * @function getSpecificFileWithInfo
+ * This method gets the specific file and returns the file info
+ * @param {string} filePath
+ * @returns {Object}
+ */
+async function getSpecificFileWithInfo(filePath) {
+  const fileInfo = statSync(filePath);
+
+  const fileInfoToReturn = {
+    name: path.basename(filePath, ".epub"), // TODO: Remove the hardcoded extension and use the extension array
+    path: filePath,
+    size: fileInfo.size,
+    lastModified: fileInfo.mtime,
+    birthtime: fileInfo.birthtime,
+  };
+
+  return fileInfoToReturn;
+}
+
 // Export the public functions
 export default {
   getAllEBooks: getAllEBooks,
+  getSpecificEBook: getSpecificEBook,
 };

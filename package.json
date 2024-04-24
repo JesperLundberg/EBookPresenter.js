@@ -11,10 +11,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Appache",
   "dependencies": {
     "express": "^4.19.2",
-    "express-validator": "^7.0.1",
     "mock-fs": "^5.2.0"
   },
   "devDependencies": {
