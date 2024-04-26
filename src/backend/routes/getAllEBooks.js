@@ -11,7 +11,7 @@ const routes = express.Router();
  */
 routes.get("/ebooks", async (_, res, next) => {
   try {
-    res.json(filesystem.getAllEBooks(config.folderToRead));
+    res.json(await filesystem.getAllEBooks(config.folderToRead));
   } catch (error) {
     console.error(
       "An error occurred when trying to get all ebooks",
