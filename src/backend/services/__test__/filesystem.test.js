@@ -24,6 +24,27 @@ describe("filesystem", () => {
   });
 
   describe("getAllEBooks", () => {
+    it("should throw an error if the path is empty", async () => {
+      // Act
+      const ebooks = sut.getAllEBooks("");
+
+      // Assert
+      await expect(ebooks).rejects.toThrow("Path is required");
+    });
+
+    it("should throw an error if the path does not exist", async () => {
+      // arrange
+      fs.existsSync.mockImplementation(() => {
+        return false;
+      });
+
+      // Act
+      const ebooks = sut.getAllEBooks("path/");
+
+      // Assert
+      await expect(ebooks).rejects.toThrow("Path does not exist");
+    });
+
     it("should return an array of all ebooks in the directory and subdirectories", async () => {
       // arrange
 
