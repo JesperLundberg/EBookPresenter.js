@@ -7,13 +7,14 @@
   "scripts": {
     "start": "node ./src/backend/server.js",
     "start:fe": "cd src/frontend && npm start",
-    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "Appache",
   "dependencies": {
     "express": "^4.19.2",
+    "jest-cli": "^29.7.0",
     "mock-fs": "^5.2.0"
   },
   "devDependencies": {

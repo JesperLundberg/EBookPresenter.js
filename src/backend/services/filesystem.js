@@ -1,5 +1,5 @@
-import { readdirSync, statSync, existsSync } from "fs";
-import path from "path";
+var { readdirSync, statSync, existsSync } = require("fs");
+var path = require("path");
 
 /**
  * @function getAllEBooks
@@ -95,7 +95,7 @@ async function getSpecificFileWithInfo(filePath) {
 }
 
 // Export the public functions
-export default {
+module.exports = {
   getAllEBooks: getAllEBooks,
   getSpecificEBook: getSpecificEBook,
 };
