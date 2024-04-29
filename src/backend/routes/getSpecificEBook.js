@@ -1,5 +1,5 @@
-import express from "express";
-import filesystem from "../services/filesystem.js";
+const express = require("express");
+const filesystem = require("../services/filesystem.js");
 
 const routes = express.Router();
 
@@ -21,4 +21,4 @@ routes.get("/specificebook", async (req, res, next) => {
 });
 
 // Export the routes
-export default routes;
+module.exports = { routes };

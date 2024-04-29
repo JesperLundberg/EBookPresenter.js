@@ -1,6 +1,6 @@
-import express from "express";
-import filesystem from "../services/filesystem.js";
-import config from "../config.js";
+const express = require("express");
+const filesystem = require("../services/filesystem.js");
+const { config } = require("../config.js");
 
 const routes = express.Router();
 
@@ -22,4 +22,4 @@ routes.get("/ebooks", async (_, res, next) => {
 });
 
 // Export the routes
-export default routes;
+module.exports = { routes };

@@ -2,4 +2,4 @@ const config = {
   folderToRead: "/books",
 };
 
-export default config;
+module.exports = { config };

@@ -69,9 +69,12 @@ describe("filesystem", () => {
 
       // Assert
       expect(ebooks).toEqual([
-        "path/some-file.epub",
-        "path/other-dir/some-other.epub",
-        "path/other-dir/some-third.epub",
+        {
+          href: "path/some-file.epub",
+          name: "some-file",
+        },
+        { href: "path/other-dir/some-other.epub", name: "some-other" },
+        { href: "path/other-dir/some-third.epub", name: "some-third" },
       ]);
     });
 

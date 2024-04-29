@@ -1,17 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 
 const result = await fetch(import.meta.env.API_BASE_PATH + "ebooks");
 const data = await result.json();
 
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="List of books">
 	<main>
       {
         data.map((book) => (
-          <h5>{book}</h5>
+          <a href={book.href}>{book.name}</a><br/>
         ))
       }
 	</main>

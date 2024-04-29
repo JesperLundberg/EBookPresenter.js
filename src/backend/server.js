@@ -1,6 +1,6 @@
-import express from "express";
-import eBookRouter from "./routes/getAllEBooks.js";
-import specificEBookRouter from "./routes/getSpecificEBook.js";
+const express = require("express");
+const eBookRouter = require("./routes/getAllEBooks.js");
+const specificEBookRouter = require("./routes/getSpecificEBook.js");
 
 const app = express();
 const port = 3000;
@@ -12,9 +12,9 @@ app.get("/", (_, res) => {
   res.json({ message: "ok" });
 });
 
-app.get("/ebooks", eBookRouter);
+app.get("/ebooks", eBookRouter.routes);
 
-app.get("/specificebook", specificEBookRouter);
+app.get("/specificebook", specificEBookRouter.routes);
 
 app.use((err, _, res, _1) => {
   const statusCode = err.statusCode || 500;
