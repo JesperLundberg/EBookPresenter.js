@@ -6,11 +6,11 @@ const data = await result.json();
 
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="List of books">
 	<main>
       {
         data.map((book) => (
-          <a href="{book.href}">{book.name}</a>
+          <a href={book.href}>{book.name}</a><br/>
         ))
       }
 	</main>

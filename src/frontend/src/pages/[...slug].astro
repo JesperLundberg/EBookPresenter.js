@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const { slug } = Astro.params;
+
+const data = await fetch(import.meta.env.API_BASE_PATH + "specificeBook?path=/" + slug); // must add / before slug as params strips the first /
+const bookData = await data.json();
+---
+
+<Layout title={bookData.name}>
+  <main>
+    <p>{bookData.name}</p>
+    <p>{bookData.size}</p>
+    <p>{bookData.mtime}</p>
+  </main>
+</Layout>

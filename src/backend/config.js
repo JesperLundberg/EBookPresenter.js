@@ -1,5 +1,5 @@
 const config = {
-  folderToRead: "/tmp/books",
+  folderToRead: "/books",
 };
 
 module.exports = { config };
