@@ -27,8 +27,8 @@ async function getAllEBooks(path) {
  * Gets the specific ebook from the Path
  * @param {string} Path
  * @exception {Error} Path is required
- * @returns {Object}
- */
+
+ * @returns {Object} */
 async function getSpecificEBook(path) {
   if (!path || typeof path != "string" || path === "") {
     throw new Error("Path is required");
@@ -67,7 +67,10 @@ function getAllFiles(dirPath, arrayOfFiles) {
     // TODO: Loop over the array of extensions to and add the file to the array if it matches
     if (path.extname(file) === ".epub") {
       // This is a file with the .epub extension so add it to the array
-      arrayOfFiles.push(path.join(dirPath, "/", file));
+      arrayOfFiles.push({
+        href: path.join(dirPath, "/", file),
+        name: path.basename(file, ".epub"), // TODO: Remove the hardcoded extension and use the extension array
+      });
     }
   });
 

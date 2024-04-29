@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/backend/server.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "node ./src/backend/server.js",
     "start:fe": "cd src/frontend && npm start",
