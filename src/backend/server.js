@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require("cors");
+
 const download = require("./routes/download.js");
 const eBookRouter = require("./routes/getAllEBooks.js");
 const specificEBookRouter = require("./routes/getSpecificEBook.js");
@@ -24,6 +26,13 @@ app.use((err, _, res, _1) => {
   return;
 });
 
+var corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200, // For legacy browser support
+  // methods: "GET",
+};
+
+app.use(cors(corsOptions));
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
