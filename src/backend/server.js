@@ -1,4 +1,5 @@
 const express = require("express");
+const download = require("./routes/download.js");
 const eBookRouter = require("./routes/getAllEBooks.js");
 const specificEBookRouter = require("./routes/getSpecificEBook.js");
 
@@ -13,8 +14,8 @@ app.get("/", (_, res) => {
 });
 
 app.get("/ebooks", eBookRouter.routes);
-
 app.get("/specificebook", specificEBookRouter.routes);
+app.get("/download", download.routes);
 
 app.use((err, _, res, _1) => {
   const statusCode = err.statusCode || 500;

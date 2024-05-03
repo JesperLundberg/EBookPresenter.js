@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 const { slug } = Astro.params;
 
-const data = await fetch(import.meta.env.API_BASE_PATH + "specificeBook?path=" + "/" + slug); // must add / before slug as params strips the first /
+const data = await fetch(import.meta.env.API_BASE_PATH + "specificebook?path=" + "/" + slug); // must add / before slug as params strips the first /
 const bookData = await data.json();
 ---
 
@@ -27,27 +27,37 @@ const bookData = await data.json();
         </div>
 
         <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4 ">
-          <a
-            href={bookData.path}
+          <button id="download"
             class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
             Download
-          </a>
+          </button>
         </div>
-        <!-- <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4"> -->
-        <!--   <dt class="font-medium text-gray-900">Salary</dt> -->
-        <!--   <dd class="text-gray-700 sm:col-span-2">$1,000,000+</dd> -->
-        <!-- </div> -->
-        <!---->
-        <!-- <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4"> -->
-        <!--   <dt class="font-medium text-gray-900">Bio</dt> -->
-        <!--   <dd class="text-gray-700 sm:col-span-2"> -->
-        <!--     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et facilis debitis explicabo -->
-        <!--     doloremque impedit nesciunt dolorem facere, dolor quasi veritatis quia fugit aperiam -->
-        <!--     aspernatur neque molestiae labore aliquam soluta architecto? -->
-        <!--   </dd> -->
-        <!-- </div> -->
       </dl>
     </div>
   </main>
 </Layout>
 
+<div hidden id="path">
+  {bookData.path}
+</div>
+<div hidden id="server">
+  {import.meta.env.API_BASE_PATH}
+</div>
+
+<script>
+function download() {
+  const path = document.getElementById('path').innerText;
+  const server = document.getElementById('server').innerText;
+  const serverPath = (server + "download?path=" + path).replace(/ /g, "");
+
+  // TODO: Need to replace api in a better way
+  // Find out the host address
+
+  // set the host address to a variable
+  const host = window.location.host;
+  fetch(host.replace(/3001/, "3000"));
+}
+
+// Make sure the button has the correct event listener
+document.getElementById('download').onclick = download;
+</script>

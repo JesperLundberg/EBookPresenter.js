@@ -2,6 +2,19 @@ var { readdirSync, statSync, existsSync } = require("fs");
 var path = require("path");
 
 /**
+ * @function doesFileExist
+ * Checks if a file exists
+ * @param {string} filePath
+ * @returns {boolean}
+ */
+async function fileExist(filePath) {
+  if (existsSync(filePath)) {
+    return true;
+  }
+  return false;
+}
+
+/**
  * @function getAllEBooks
  * Gets all ebooks (including subfolders) from the path set in config.folderToRead
  * @param {string} path
@@ -99,6 +112,7 @@ async function getSpecificFileWithInfo(filePath) {
 
 // Export the public functions
 module.exports = {
+  fileExist: fileExist,
   getAllEBooks: getAllEBooks,
   getSpecificEBook: getSpecificEBook,
 };
