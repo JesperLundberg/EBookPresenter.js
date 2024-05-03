@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors");
 
 const download = require("./routes/download.js");
 const eBookRouter = require("./routes/getAllEBooks.js");
@@ -15,6 +14,13 @@ app.get("/", (_, res) => {
   res.json({ message: "ok" });
 });
 
+app.options("/download", function (_, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.end();
+});
+
 app.get("/ebooks", eBookRouter.routes);
 app.get("/specificebook", specificEBookRouter.routes);
 app.get("/download", download.routes);
@@ -26,13 +32,6 @@ app.use((err, _, res, _1) => {
   return;
 });
 
-var corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200, // For legacy browser support
-  // methods: "GET",
-};
-
-app.use(cors(corsOptions));
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
