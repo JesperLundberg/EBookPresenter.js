@@ -5,7 +5,7 @@ const routes = express.Router();
 routes.get("/download", async (req, res, next) => {
   try {
     const fullFilePath = req.query.path;
-    console.log("fullFilePath", fullFilePath);
+    res.header("Content-Type", "application/epub+zip");
     res.download(fullFilePath);
   } catch (error) {
     console.error(
