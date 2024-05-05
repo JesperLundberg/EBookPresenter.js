@@ -54,7 +54,7 @@ function download() {
   // Find out the host address
 
   // set the host address to a variable
-  const host = "http://" + window.location.host;
+  const host = ("http://" + window.location.host + "/download?path=" + path).replace(/ /g, "");
   fetch(host.replace(/3001/, "3000"));
 }
 
