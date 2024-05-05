@@ -47,14 +47,14 @@ const bookData = await data.json();
 <script>
 function download() {
   const path = document.getElementById('path').innerText;
-  const server = document.getElementById('server').innerText;
+//  const server = document.getElementById('server').innerText;
   const serverPath = (server + "download?path=" + path).replace(/ /g, "");
 
   // TODO: Need to replace api in a better way
   // Find out the host address
 
   // set the host address to a variable
-  const host = ("http://" + window.location.host + "/download?path=" + path).replace(/ /g, "");
+  const host = ("http://" + window.location.host + "/download?path=").replace(/ /g, "") + path;
   fetch(host.replace(/3001/, "3000"));
 }
 
