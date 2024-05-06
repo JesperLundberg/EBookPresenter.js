@@ -18,7 +18,7 @@ app.use(
 );
 
 app.get("/", (_, res) => {
-  res.json({ message: "ok" });
+  res.json({ message: "I live ...again!" });
 });
 
 app.get("/ebooks", eBookRouter.routes);

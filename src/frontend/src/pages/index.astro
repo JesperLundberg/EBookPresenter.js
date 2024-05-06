@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 
 const result = await fetch(import.meta.env.API_BASE_PATH + "ebooks");
 const data = await result.json();
-
 ---
 
 <Layout title="List of books">
