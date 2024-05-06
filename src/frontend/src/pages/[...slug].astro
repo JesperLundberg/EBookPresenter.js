@@ -27,37 +27,16 @@ const bookData = await data.json();
         </div>
 
         <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4 ">
-          <button id="download"
-            class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-            Download
-          </button>
+          <div></div>
+          <a id="downloadLink" href={"/download?path=" + bookData.path} target="_blank" class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">Download</a>
         </div>
       </dl>
     </div>
   </main>
 </Layout>
 
-<div hidden id="path">
-  {bookData.path}
-</div>
-<div hidden id="server">
-  {import.meta.env.API_BASE_PATH}
-</div>
-
 <script>
-function download() {
-  const path = document.getElementById('path').innerText;
-//  const server = document.getElementById('server').innerText;
-  const serverPath = (server + "download?path=" + path).replace(/ /g, "");
-
-  // TODO: Need to replace api in a better way
-  // Find out the host address
-
-  // set the host address to a variable
-  const host = ("http://" + window.location.host + "/download?path=").replace(/ /g, "") + path;
-  fetch(host.replace(/3001/, "3000"));
-}
-
-// Make sure the button has the correct event listener
-document.getElementById('download').onclick = download;
+  const link = document.getElementById("downloadLink");
+  // Make sure the download link points to the backend endpoint
+  link.href = link.href.replace(/3001/, "3000");
 </script>

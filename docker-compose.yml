@@ -14,4 +14,4 @@ services:
         build: 
             dockerfile: backend.dockerfile
         volumes:
-          - /home/jesper/Dropbox/Ebook/:/books/
+          - /tmp/books/:/books/
